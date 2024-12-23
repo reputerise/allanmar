@@ -62,7 +62,7 @@ export default function Blog() {
     const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
 
     return (
-        <div className="w-full !max-w-full md:px-20 px-5  flex flex-col overflow-x-hidden w-full min-h-[100dvh]  flex flex-col justify-center items-center scroll-smooth">
+        <div className="w-full !max-w-full md:px-20 px-5  flex flex-col overflow-x-hidden w-full min-h-[100dvh]  flex flex-col justify-center items-center scroll-smooth py-12 xl:my-36 ">
             <div className="w-full px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl text-center">
                     <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">El blog de Allanmar International Company</h2>

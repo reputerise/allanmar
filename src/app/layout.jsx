@@ -1,7 +1,7 @@
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-// import Footer from "./components/ecyce/footer";
-// import Navbar from "./components/ecyce/navbar";
+import Footer from "../components/Footer"
+import Navbar from "../components/Header";
 import Script from 'next/script';
 
 const montserrat = Montserrat({
@@ -65,10 +65,10 @@ export default function RootLayout({ children }) {
         `}
       </Script>
 
-      <body className={`${montserrat.className} montserrat`}>
-        {/* <Navbar /> */}
+      <body className={`${montserrat.className} montserrat relative`}>
+        <Navbar />
         {children}
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   );
