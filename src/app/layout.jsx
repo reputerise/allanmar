@@ -10,8 +10,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title:  'Allanmar',
-  description: "COMPLETAR",
+  title:  'Futerman International Products',
+  description: "Somos el único laboratorio sudamericano que diseña y elabora dispositivos médicos en base a ácido hialurónico reticulado e hidroxiapatita de calcio",
 };
 
 export default function RootLayout({ children }) {
