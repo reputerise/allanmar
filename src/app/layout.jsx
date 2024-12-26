@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
 
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-GHPS101LNJ"
+        src="https://www.googletagmanager.com/gtag/js?id=GTM-KRFVB7NV"
       />
 
       <Script id="google-analytics">
@@ -28,11 +28,11 @@ export default function RootLayout({ children }) {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-GHPS101LNJ');
+          gtag('config', 'GTM-KRFVB7NV');
         `}
       </Script>
 
-      <Script id="reb2b-script" strategy="afterInteractive">
+      {/* <Script id="reb2b-script" strategy="afterInteractive">
         {`
           !function () {
             var reb2b = window.reb2b = window.reb2b || [];
@@ -63,7 +63,7 @@ export default function RootLayout({ children }) {
             reb2b.load("G4N210H4GM6Z");
           }();
         `}
-      </Script>
+      </Script> */}
 
       <body className={`${montserrat.className} montserrat relative`}>
         <Navbar />
