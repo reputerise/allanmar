@@ -95,7 +95,7 @@ export default function BlogPost({ params }) {
         );
     }
 
-    let  previousPathname  = "https://allanmar.vercel.app/"
+    let  previousPathname  = "https://blog.futerman.com.ar/"
 
 
     return (
