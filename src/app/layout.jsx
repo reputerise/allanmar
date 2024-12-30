@@ -1,8 +1,8 @@
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-import Footer from "../components/Footer"
+import Footer from "../components/Footer";
 import Navbar from "../components/Header";
-import Script from 'next/script';
+import Script from "next/script";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -10,19 +10,25 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title:  'Futerman International Products',
-  description: "Somos el único laboratorio sudamericano que diseña y elabora dispositivos médicos en base a ácido hialurónico reticulado e hidroxiapatita de calcio",
+  title: "Futerman International Products",
+  description:
+    "Somos el único laboratorio sudamericano que diseña y elabora dispositivos médicos en base a ácido hialurónico reticulado e hidroxiapatita de calcio",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-
+      <head>
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" />
+        {/* Metadata (opcional, si usas metadata en las páginas) */}
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+      </head>
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=GTM-KRFVB7NV"
       />
-
       <Script id="google-analytics">
         {`
           window.dataLayer = window.dataLayer || [];
@@ -31,40 +37,6 @@ export default function RootLayout({ children }) {
           gtag('config', 'GTM-KRFVB7NV');
         `}
       </Script>
-
-      {/* <Script id="reb2b-script" strategy="afterInteractive">
-        {`
-          !function () {
-            var reb2b = window.reb2b = window.reb2b || [];
-            if (reb2b.invoked) return;
-            reb2b.invoked = true;
-            reb2b.methods = ["identify", "collect"];
-            reb2b.factory = function (method) {
-              return function () {
-                var args = Array.prototype.slice.call(arguments);
-                args.unshift(method);
-                reb2b.push(args);
-                return reb2b;
-              };
-            };
-            for (var i = 0; i < reb2b.methods.length; i++) {
-              var key = reb2b.methods[i];
-              reb2b[key] = reb2b.factory(key);
-            }
-            reb2b.load = function (key) {
-              var script = document.createElement("script");
-              script.type = "text/javascript";
-              script.async = true;
-              script.src = "https://s3-us-west-2.amazonaws.com/b2bjsstore/b/" + key + "/reb2b.js.gz";
-              var first = document.getElementsByTagName("script")[0];
-              first.parentNode.insertBefore(script, first);
-            };
-            reb2b.SNIPPET_VERSION = "1.0.1";
-            reb2b.load("G4N210H4GM6Z");
-          }();
-        `}
-      </Script> */}
-
       <body className={`${montserrat.className} montserrat relative`}>
         <Navbar />
         {children}
