@@ -136,19 +136,19 @@ export default function BlogPost({ params }) {
                                             src={post.mainImage.asset.url}
                                             alt={post.mainImage.alt}
                                             title={post.mainImage.title}
-                                            className='md:w-1/3 self-center'
+                                            className='md:w-1/2 self-center'
                                         />
                                     )}
-                                    <div className='flex flex-col items-start gap-5 md:w-3/4 self-center'>
+                                    <div className='flex flex-col items-start gap-5 self-center'>
                                         {post.body && post.body.map((block, index) => {
                                             if (block._type === 'block') {
                                                 switch (block.style) {
                                                     case 'h1':
                                                         return ""
                                                     case 'h2':
-                                                        return <h2 key={index} className='col-span-12 mt-28 text-heading tracking-tighter leading-none text-sf-lime my-8'>{block.children[0]?.text || ''}</h2>;
+                                                        return <h2 key={index} className='col-span-12 mt-12 tracking-tighter leading-none text-2xl  font-bold'>{block.children[0]?.text || ''}</h2>;
                                                     case 'h3':
-                                                        return <h3 key={index} className="text-smallHeading leading-none reg-neue my-4">{block.children[0]?.text || ''}</h3>;
+                                                        return <h3 key={index} className="text-xl leading-none reg-neue my-4 font-semibold">{block.children[0]?.text || ''}</h3>;
                                                     case 'blockquote':
                                                         return (
                                                             <blockquote key={index} className="pl-4 border-l-4 border-sf-lime italic text-sf-cream py-4">
@@ -195,7 +195,7 @@ export default function BlogPost({ params }) {
                                                         src={imageUrl}
                                                         alt={block.alt || ''}
                                                         title={block.title || ""}
-                                                        className='md:w-1/3 self-center'
+                                                        className='md:w-1/2 self-center'
                                                         style={{ maxWidth: '100%' }}
                                                     />
                                                 );
