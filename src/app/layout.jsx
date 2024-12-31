@@ -27,14 +27,14 @@ export default function RootLayout({ children }) {
       </head>
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=GTM-KRFVB7NV"
+        src="https://www.googletagmanager.com/gtag/js?id=G-2XSBR9TNS5"
       />
       <Script id="google-analytics">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'GTM-KRFVB7NV');
+          gtag('config', 'G-2XSBR9TNS5');
         `}
       </Script>
       <body className={`${montserrat.className} montserrat relative`}>
