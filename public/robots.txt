@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://blog.futerman.com.ar
+
+# Sitemaps
+Sitemap: https://blog.futerman.com.ar/sitemap.xml
