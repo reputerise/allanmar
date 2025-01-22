@@ -55,7 +55,6 @@ export default function Blog() {
         ? posts.filter((post) => post.categories?.some(category => category?._id === activeCategory))
         : posts;
     
-    console.log("filteredPosts", filteredPosts)
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
