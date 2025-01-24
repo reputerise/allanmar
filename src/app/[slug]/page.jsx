@@ -80,9 +80,16 @@ export default function BlogPost({ params }) {
 
     function constructImageUrl(ref) {
         if (!ref) return '';
-        const cleanedRef = ref.replace(/^image-/, '').replace(/-jpg$/, '');
-        return `${SANITY_BASE_URL}${cleanedRef}.jpg`;
+    
+        // Limpiar el prefijo "image-" y extraer los datos necesarios
+        const cleanedRef = ref.replace(/^image-/, ''); // Eliminar "image-"
+        const extension = cleanedRef.includes('-jpg') ? '.jpg' : '.png'; // Verificar si es jpg o png
+        const sanitizedRef = cleanedRef.replace(/-(jpg|png)$/, ''); // Remover el sufijo del formato
+    
+        // Construir la URL final
+        return `${SANITY_BASE_URL}${sanitizedRef}${extension}`;
     }
+    
 
     if (!post) {
         return (
@@ -188,6 +195,7 @@ export default function BlogPost({ params }) {
                                                         );
                                                 }
                                             } else if (block._type === 'image') {
+                                                console.log("imagen ", block)
                                                 const imageUrl = block.asset && block.asset._ref ? constructImageUrl(block.asset._ref) : '';
                                                 return (
                                                     <img

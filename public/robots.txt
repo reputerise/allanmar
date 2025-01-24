@@ -6,4 +6,4 @@ Allow: /
 Host: https://blog.futerman.com.ar
 
 # Sitemaps
-Sitemap: https://blog.futerman.com.ar/sitemap.xml
+Sitemap: https://blog.futerman.com.ar/sitemap-0.xml
