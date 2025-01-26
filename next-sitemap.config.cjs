@@ -19,7 +19,7 @@ async function fetchDynamicRoutes() {
   const res = await fetch('https://xy1nu7wy.api.sanity.io/v1/data/query/production?query=*[_type == "post"]{slug}'); // URL donde obtienes los slugs
   const posts = await res.json();
   return posts.result.map(post => ({
-      loc: `/${post.slug.current}`,
+      loc: `/blog/${post.slug.current}`,
       lastmod: new Date().toISOString(),
   }));
 }
