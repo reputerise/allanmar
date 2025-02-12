@@ -18,7 +18,6 @@ function ArrowLeftIcon(props) {
     )
 }
 function formatDate(dateString) {
-    console.log("fecha ", dateString)
     return new Date(`${dateString}`).toLocaleDateString('en-US', {
         day: 'numeric',
         month: 'long',
@@ -103,6 +102,8 @@ export default function BlogPost({ params }) {
     }
 
     let  previousPathname  = "https://blog.futerman.com.ar/"
+
+    console.log("post ", post)
 
 
     return (
@@ -195,7 +196,6 @@ export default function BlogPost({ params }) {
                                                         );
                                                 }
                                             } else if (block._type === 'image') {
-                                                console.log("imagen ", block)
                                                 const imageUrl = block.asset && block.asset._ref ? constructImageUrl(block.asset._ref) : '';
                                                 return (
                                                     <img
