@@ -1,38 +1,76 @@
 import { fetchMetadata } from "../../components/blog/fetchMetadata";
 import Script from "next/script";
 
-export async function generateMetadata({ params }) {
-    const slug = params?.slug || "";
-    const postMetadata = await fetchMetadata(slug);
+import { client } from '../../../sanity/lib/client';
 
-    const title = postMetadata?.title || "Blog - Futerman International Products";
-    const description = postMetadata?.description || "Descubrí los últimos avances en dermatología y estética.";
-    const canonicalUrl = `https://blog.futerman.com.ar/${slug}`;
-    const imageUrl = postMetadata?.image || "https://blog.futerman.com.ar/default-image.jpg";
-    const datePublished = postMetadata?.datePublished || "2025-01-01T00:00:00.000Z";
-    const dateModified = postMetadata?.dateModified || datePublished;
+export async function generateMetadata({ params }) {
+    const { slug } = params;
+    const query = `*[_type == "post" && slug.current == $slug][0]{
+        title,
+        metaDescription,
+        "image": mainImage.asset->url,
+        "datePublished": _createdAt,
+        "dateModified": _updatedAt
+    }`;
+
+    const post = await client.fetch(query, { slug });
+
+    if (!post) {
+        return {
+            title: 'Artículo no encontrado',
+            description: 'El contenido solicitado no está disponible.',
+        };
+    }
+
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": post.title,
+        "image": [post.image],
+        "datePublished": post.datePublished,
+        "dateModified": post.dateModified,
+        "author": {
+            "@type": "Person",
+            "name": "Marcelo Futerman",
+            "url": "https://blog.futerman.com.ar/marcelo-futerman"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Futerman Blog",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://blog.futerman.com.ar/logo.png"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://blog.futerman.com.ar/${slug}`
+        },
+        "url": `https://blog.futerman.com.ar/${slug}`
+    };
 
     return {
-        title,
-        description,
-        alternates: {
-            canonical: canonicalUrl,
-        },
+        title: post.title,
+        description: post.metaDescription,
         openGraph: {
-            title,
-            description,
-            url: canonicalUrl,
-            type: "article",
-            images: [imageUrl],
+            title: post.title,
+            description: post.metaDescription,
+            url: `https://blog.futerman.com.ar/${slug}`,
+            images: [{ url: post.image }],
+            type: 'article',
         },
-        additionalMetaTags: [
-            { name: "robots", content: "index, follow" },
-            { name: "googlebot", content: "index, follow" },
-            { name: "author", content: "Marcelo Futerman" },
-            { name: "date", content: datePublished },
-        ],
+        twitter: {
+            card: 'summary_large_image',
+            title: post.title,
+            description: post.metaDescription,
+            images: [post.image],
+        },
+        other: {
+            "application/ld+json": JSON.stringify(jsonLd),
+        },
     };
 }
+
 
 export default function BlogLayout({ children, params }) {
     const slug = params?.slug || "";
