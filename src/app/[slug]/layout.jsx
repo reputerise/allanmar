@@ -8,6 +8,7 @@ export async function generateMetadata({ params }) {
     const query = `*[_type == "post" && slug.current == $slug][0]{
         title,
         metaDescription,
+        abstract,
         "image": mainImage.asset->url,
         "datePublished": _createdAt,
         "dateModified": _updatedAt
@@ -51,10 +52,10 @@ export async function generateMetadata({ params }) {
 
     return {
         title: post.title,
-        description: post.metaDescription,
+        description: post.abstract,
         openGraph: {
             title: post.title,
-            description: post.metaDescription,
+            description: post.abstract,
             url: `https://blog.futerman.com.ar/${slug}`,
             images: [{ url: post.image }],
             type: 'article',
@@ -62,7 +63,7 @@ export async function generateMetadata({ params }) {
         twitter: {
             card: 'summary_large_image',
             title: post.title,
-            description: post.metaDescription,
+            description: post.abstract,
             images: [post.image],
         },
         other: {
