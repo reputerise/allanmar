@@ -170,7 +170,7 @@ export default function BlogPost({ params }) {
                                                             <p key={index}>
                                                                 {block.children && block.children.map((child, childIndex) => {
                                                                     if (child.marks && child.marks.length > 0) {
-                                                                        const mark = block.markDefs.find(def => def._key === child.marks[0]);
+                                                                        const mark = block.markDefs?.find(def => def._key === child.marks[0]);
                                                                         if (mark && mark.href) {
                                                                             return (
                                                                                 <a key={child._key} href={mark.href} className='text-sf-lime'>
