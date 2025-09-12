@@ -23,6 +23,8 @@ export async function generateMetadata({ params }) {
         };
     }
 
+    const canonicalUrl = `https://blog.futerman.com.ar/${slug}`;
+
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "Article",
@@ -45,9 +47,9 @@ export async function generateMetadata({ params }) {
         },
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `https://blog.futerman.com.ar/${slug}`
+            "@id": canonicalUrl
         },
-        "url": `https://blog.futerman.com.ar/${slug}`
+        "url": canonicalUrl
     };
 
     return {
@@ -56,7 +58,7 @@ export async function generateMetadata({ params }) {
         openGraph: {
             title: post.title,
             description: post.abstract,
-            url: `https://blog.futerman.com.ar/${slug}`,
+            url: canonicalUrl,
             images: [{ url: post.image }],
             type: 'article',
         },
@@ -65,6 +67,9 @@ export async function generateMetadata({ params }) {
             title: post.title,
             description: post.abstract,
             images: [post.image],
+        },
+        alternates: {
+            canonical: canonicalUrl,   
         },
         other: {
             "application/ld+json": JSON.stringify(jsonLd),
