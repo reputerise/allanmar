@@ -9,28 +9,31 @@ const montserrat = Montserrat({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-export async function generateMetadata() {
-  return {
+export const metadata = {
+  metadataBase: new URL("https://blog.futerman.com.ar"),
+  title: {
+    default: "Futerman International Products",
+    template: "%s | Futerman Blog",
+  },
+  description:
+    "Somos el único laboratorio sudamericano que diseña y elabora dispositivos médicos en base a ácido hialurónico reticulado e hidroxiapatita de calcio.",
+  openGraph: {
     title: "Futerman International Products",
     description:
-      "Somos el único laboratorio sudamericano que diseña y elabora dispositivos médicos en base a ácido hialurónico reticulado e hidroxiapatita de calcio",
-    alternates: {
-      canonical: "https://blog.futerman.com.ar/",
+      "Somos el único laboratorio sudamericano que diseña y elabora dispositivos médicos en base a ácido hialurónico reticulado e hidroxiapatita de calcio.",
+    url: "https://blog.futerman.com.ar/",
+    type: "website",
+    images: ["https://blog.futerman.com.ar/default-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
     },
-    openGraph: {
-      title: "Futerman International Products",
-      description:
-        "Somos el único laboratorio sudamericano que diseña y elabora dispositivos médicos en base a ácido hialurónico reticulado e hidroxiapatita de calcio",
-      url: "https://blog.futerman.com.ar/",
-      type: "website",
-      images: ["https://blog.futerman.com.ar/default-image.jpg"],
-    },
-    additionalMetaTags: [
-      { name: "robots", content: "index, follow" },
-      { name: "googlebot", content: "index, follow" },
-    ],
-  };
-}
+  },
+};
 
 export default function RootLayout({ children }) {
   return (
@@ -48,16 +51,16 @@ export default function RootLayout({ children }) {
         `}
       </Script>
       <Script id="gtm-script" strategy="afterInteractive">
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-M3KP2PXJ');
-          `}
-        </Script>
+        {`
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-M3KP2PXJ');
+        `}
+      </Script>
       <body className={`${montserrat.className} montserrat relative`}>
-      <noscript>
+        <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-M3KP2PXJ"
             height="0"
