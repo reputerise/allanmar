@@ -40,6 +40,7 @@ export default function RootLayout({ children }) {
     <html lang="es">
       <head>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="google-site-verification" content="tKXmRMa8uv6zpTGC9ePkQDP-GePiqUnSyUi8x2flSIk" />
       </head>
       <Script async src="https://www.googletagmanager.com/gtag/js?id=G-2XSBR9TNS5" />
       <Script id="google-analytics">
