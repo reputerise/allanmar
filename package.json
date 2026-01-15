@@ -13,7 +13,7 @@
   "dependencies": {
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
-    "next": "15.1.2",
+    "next": "15.1.11",
     "next-sanity": "^9.8.30",
     "next-sitemap": "^4.2.3",
     "react": "^19.0.0",
